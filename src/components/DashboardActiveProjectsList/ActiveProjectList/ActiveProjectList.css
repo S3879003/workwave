@@ -1,7 +1,8 @@
 .active-project-list {
     padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 70vw; /* Set the width to 70% of the viewport */
+    margin: 0 auto; /* Center the content horizontally */
+    text-align: center;
   }
   
   h2 {
