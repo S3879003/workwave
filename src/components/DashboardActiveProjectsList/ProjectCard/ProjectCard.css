@@ -1,0 +1,42 @@
+.project-card {
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  
+  .project-card-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+  
+  .project-image {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px 0 0 10px;
+  }
+  
+  .card-body {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  
+  .complete-btn {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .cancel-btn {
+    border-color: #dc3545;
+    color: #dc3545;
+  }
+  

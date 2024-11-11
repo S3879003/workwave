@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import './LoginPage.css';
 
-const LoginPage = () => {
+const LoginPage = ({ onSwap }) => {
   return (
     <Container fluid className="min-vh-100">
       <Row className="h-100">
@@ -22,11 +22,11 @@ const LoginPage = () => {
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 mb-3">
-                Login Now
+                Login
               </Button>
 
               <p className="text-center">
-                Don’t have an account? <a href="#signup">Sign up</a>
+                Don’t have an account? <a href="#" onClick={onSwap}>Sign up</a>
               </p>
             </Form>
           </div>

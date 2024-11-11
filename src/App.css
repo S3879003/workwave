@@ -3,3 +3,18 @@
     flex-direction: row;
 }
 
+/* Define your custom Bootstrap color variables */
+:root {
+    --bs-test: #573FEF; /* Set primary color to #573FEF */
+  }
+  
+  /* Optional: Override other Bootstrap variables if needed */
+  :root {
+    --bs-secondary: #6c757d;
+    --bs-success: #28a745;
+    --bs-danger: #dc3545;
+    --bs-warning: #ffc107;
+    --bs-info: #17a2b8;
+    --bs-light: #f8f9fa;
+    --bs-dark: #343a40;
+  }
