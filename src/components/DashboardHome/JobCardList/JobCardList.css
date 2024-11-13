@@ -1,0 +1,12 @@
+.job-posts-list {
+    margin-top: 40px;
+  }
+  
+  .job-cards {
+    display: flex;
+    gap: 20px;
+    /* justify-content: space-between; */
+    background-color: beige;
+    padding: 20px;
+  }
+  

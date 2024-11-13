@@ -9,6 +9,8 @@ import SignUpPage from './components/login and Signup/signup';
 import JobBoard from './components/JobSearch/JobBoard';
 import Dashboard from './components/DashboardHome/Dashboard';
 import ActiveProjectList from './components/DashboardActiveProjectsList/ActiveProjectList/ActiveProjectList';
+import CreateProjectForm from './components/DashboardHome/CreateProjectForm/CreateProjectForm';
+
 
 
 setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/');
@@ -27,7 +29,8 @@ function App() {
         <SecondaryNavbar />
         {/* <JobBoard /> */}
         {/* <Dashboard /> */}
-        <ActiveProjectList />
+        <CreateProjectForm />
+        {/* <ActiveProjectList /> */}
       </header>
     </div>
     

@@ -1,0 +1,18 @@
+.job-post-card {
+    width: 300px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+  
+  .job-image {
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  .view-offers-btn {
+    margin-top: 15px;
+    width: 100%;
+  }
+  

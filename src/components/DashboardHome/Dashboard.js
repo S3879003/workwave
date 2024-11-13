@@ -3,6 +3,7 @@ import SidebarCard from './SidebarCard/SidebarCard';
 import ActiveProjectsCard from './ActiveProjectsCard/ActiveProjectsCard';
 import InfoCards from './InfoCards/InfoCards';
 import './Dashboard.css';
+import JobPostsList from '../DashboardHome/JobCardList/JobCardList';
 
 const Dashboard = () => {
   return (
@@ -12,8 +13,9 @@ const Dashboard = () => {
       </div>
       <div className="main-content">
         <h2>Freelancer Dashboard</h2>
-        <ActiveProjectsCard />
-        <InfoCards />
+        {/* <ActiveProjectsCard /> */}
+        {/* <InfoCards /> */}
+        <JobPostsList />
       </div>
     </div>
   );
