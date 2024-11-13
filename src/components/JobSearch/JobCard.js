@@ -1,34 +1,41 @@
 import React from 'react';
-import { Card, Badge } from 'react-bootstrap';
+import { Card, Badge, Button } from 'react-bootstrap';
 import './JobCard.css';
 
-const JobCard = () => {
+const JobCard = ({ job, handleShowModal }) => {
   return (
-    <Card className="job-card shadow-sm">
+    <Card className="job-card shadow-sm" onClick={() => handleShowModal(job)}>
       <Card.Body>
         {/* Company Information */}
         <div className="company-info mb-3">
-          <h6 className="company-name">Business Incorporated Pty Ltd</h6>
-          <Badge bg="info" className="top-rated">Top Rated</Badge>
+          <h6 className="company-name">{job.company}</h6>
+          <Badge bg={job.rating ? "info" : "secondary"} className="top-rated">
+            {job.rating || 'New User'}
+          </Badge>
         </div>
 
         {/* Job Image */}
         <Card.Img
           variant="top"
-          src="https://via.placeholder.com/400x200"
+          src={job.image}
           alt="Job"
           className="job-image"
         />
 
         {/* Job Description */}
         <Card.Text className="job-description mt-3">
-          Looking to hire a video editor for a healthcare product advertisement
+          {job.title}
         </Card.Text>
 
         {/* Budget Information */}
         <div className="budget-info">
-          <strong>BUDGET</strong> <span>$3000</span>
+          <strong>BUDGET</strong> <span>${job.budget}</span>
         </div>
+
+        {/* View Details Button */}
+        <Button variant="outline-primary" className="view-details-btn">
+          View Details
+        </Button>
       </Card.Body>
     </Card>
   );

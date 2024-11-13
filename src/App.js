@@ -1,39 +1,44 @@
-import './App.css';
-import '@shoelace-style/shoelace/dist/themes/light.css';
-import { setBasePath } from '@shoelace-style/shoelace/dist/utilities/base-path';
-import React, { useState } from 'react';
-import CustomNavbar from './components/navigation/navbar';
-import SecondaryNavbar from './components/navigation/SecondaryNavbar';
-import LoginPage from './components/login and Signup/login';
-import SignUpPage from './components/login and Signup/signup';
-import JobBoard from './components/JobSearch/JobBoard';
-import Dashboard from './components/DashboardHome/Dashboard';
-import ActiveProjectList from './components/DashboardActiveProjectsList/ActiveProjectList/ActiveProjectList';
-import CreateProjectForm from './components/DashboardHome/CreateProjectForm/CreateProjectForm';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-
-
-setBasePath('https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.18.0/cdn/');
+// Import your components
+import LoginPage from './components/pages/login';
+import SignupPage from './components/pages/signup';
+import JobPage from './components/pages/JobPage';
+import FreelancerDashboard from './components/pages/FreelancerDashboardPage';
+import ActiveProjectsPage from './components/pages/ActiveProjectsPage';
+import ClientDashboard from './components/pages/ClientDashboard';
+import CreateProjectForm from './components/pages/CreateProjectPage';
 
 function App() {
-  const [isLogin, setIsLogin] = useState(true);
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* {isLogin ? (
-          <LoginPage onSwap={() => setIsLogin(false)}/>
-        ) : (
-          <SignUpPage onSwap={() => setIsLogin(true)}/>
-        )} */}
-        <CustomNavbar />
-        <SecondaryNavbar />
-        {/* <JobBoard /> */}
-        {/* <Dashboard /> */}
-        <CreateProjectForm />
-        {/* <ActiveProjectList /> */}
-      </header>
-    </div>
-    
+    <Router>
+      <div className="App">
+        <Routes>
+          {/* Route for Login Page */}
+          <Route path="/" element={<LoginPage />} />
+          
+          {/* Route for Signup Page */}
+          <Route path="/signup" element={<SignupPage />} />
+
+          {/* Route for Job Search Page */}
+          <Route path="/jobs" element={<JobPage />} />
+
+          {/* Route for Freelancer Dashboard */}
+          <Route path="/freelancer-dashboard" element={<FreelancerDashboard />} />
+
+          {/* Route for Active Projects Page */}
+          <Route path="/freelancer-projects" element={<ActiveProjectsPage />} />
+
+          {/* Route for Client Dashboard */}
+          <Route path="/client-dashboard" element={<ClientDashboard />} />
+
+          {/* Route for Create Project Page */}
+          <Route path="/create-project" element={<CreateProjectForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,40 @@
+.job-image-container {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .job-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+  }
+  
+  .job-description {
+    margin: 20px 0;
+  }
+  
+  .skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .skill-badge {
+    background-color: #6b46c1;
+    padding: 5px 10px;
+    border-radius: 20px;
+    color: white;
+  }
+  
+  .submit-offer-btn {
+    width: 100%;
+    margin-top: 20px;
+    background-color: #573FEF;
+    border: none;
+  }
+  
+  .submit-offer-btn:hover {
+    background-color: #3b29cc;
+  }
+  

@@ -2,14 +2,14 @@ import React from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import './LoginPage.css';
 
-const SignUpPage = ({ onSwap }) => {
+const LoginPage = ({ onSwap }) => {
   return (
     <Container fluid className="min-vh-100">
       <Row className="h-100">
         <Col md={6} className="col-full-height">
           <div className="login-box p-4">
-            <h2 className="text-center mb-3">SIGN UP</h2>
-            <p className="text-center mb-4">Sign up now to achieve greatness!</p>
+            <h2 className="text-center mb-3">LOGIN</h2>
+            <p className="text-center mb-4">Sign in now to achieve greatness!</p>
             <Form>
               <Form.Group controlId="formUsername" className="mb-3">
                 <Form.Label>Username</Form.Label>
@@ -21,17 +21,12 @@ const SignUpPage = ({ onSwap }) => {
                 <Form.Control type="password" placeholder="Password" />
               </Form.Group>
 
-              <Form.Group controlId="formPassword" className="mb-3">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control type="password" placeholder="Password" />
-              </Form.Group>
-
               <Button variant="primary" type="submit" className="w-100 mb-3">
-                Sign Up
+                Login
               </Button>
 
               <p className="text-center">
-                Already have an account? <a href="#" onClick={onSwap}>Login</a>
+                Don’t have an account? <a href="/signup" onClick={onSwap}>Sign up</a>
               </p>
             </Form>
           </div>
@@ -59,4 +54,4 @@ const SignUpPage = ({ onSwap }) => {
   );
 };
 
-export default SignUpPage;
+export default LoginPage;
