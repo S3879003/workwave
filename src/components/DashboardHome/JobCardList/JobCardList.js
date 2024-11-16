@@ -1,42 +1,61 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import JobCard from '../CurrentJobCard/CurrentJobCard';
 import './JobCardList.css';
 
 const JobPostsList = () => {
-    const jobPosts = [
-        {
-          company: 'Business Incorporated Pty Ltd',
-          title: 'Looking to hire a video editor for a healthcare product advertisement',
-          image: 'https://via.placeholder.com/400x200',
-          rating: 'Top Rated',
-          offers: [
-            { initials: 'MR', name: 'Matthew Rosin', username: 'mrosin', rating: 3.5, price: 250 },
-            { initials: 'JD', name: 'Jane Doe', username: 'jdoe', rating: 4.2, price: 300 },
-            { initials: 'JT', name: 'Timmy T', username: 'TimmyT', rating: 4.6, price: 150 },
-          ],
-        },
-        {
-          company: 'Corporate Incorporated Pty Ltd',
-          title: 'Looking to hire a graphic designer for a new brand logo',
-          image: 'https://via.placeholder.com/400x200',
-          rating: 'Top Rated',
-          offers: [
-            { initials: 'SJ', name: 'Steve Jobs', username: 'Steve_Jobs', rating: 5, price: 700 },
-            { initials: 'JD', name: 'John Doe', username: 'John_Doe', rating: 4.0, price: 450 },
-          ],
-        },
-      ];
-    
-      return (
-        <div className="job-posts-list">
-          <h2>Current Job Posts</h2>
-          <div className="job-cards">
-            {jobPosts.map((post, index) => (
-              <JobCard key={index} {...post} />
-            ))}
-          </div>
-        </div>
-      );
-    };
+  const [jobPosts, setJobPosts] = useState([]);
+  const [error, setError] = useState('');
+
+  const userId = localStorage.getItem('userId');
+
+  const fetchActiveJobs = async () => {
+    try {
+      const response = await fetch(`http://localhost:8888/job/${userId}/listings/active`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setJobPosts(data.jobs);
+      } else {
+        setError(data.message || 'Failed to fetch active jobs');
+      }
+    } catch (err) {
+      console.error('Error fetching active jobs:', err);
+      setError('An error occurred while fetching active jobs');
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      fetchActiveJobs();
+    }
+  }, [userId]);
+
+  return (
+    <div className="job-posts-list">
+      <h2>Current Job Posts</h2>
+      {error && <p className="error-message">{error}</p>}
+      <div className="job-cards">
+        {jobPosts.length > 0 ? (
+          jobPosts.map((post, index) => (
+            <JobCard
+              key={index}
+              company={`${post.userId.firstName} ${post.userId.lastName}`}
+              title={post.title}
+              image={post.img}
+              rating="Top Rated"
+              offers={post.offers || []}
+            />
+          ))
+        ) : (
+          <p>No active job posts found.</p>
+        )}
+      </div>
+    </div>
+  );
+};
 
 export default JobPostsList;

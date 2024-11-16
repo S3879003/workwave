@@ -1,45 +1,127 @@
 import React, { useState } from 'react';
-import { Form, Button, InputGroup, Badge } from 'react-bootstrap';
+import { Form, Button, InputGroup, Alert } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import './CreateProjectForm.css';
 
 const CreateProjectForm = () => {
-  const [skills, setSkills] = useState(['Proficient In Video Editing Software', 'Colour Grading And Sound Editing', 'Experience In Creating Product Advertisements']);
-  const [newSkill, setNewSkill] = useState('');
-  const [budget, setBudget] = useState('');
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
+  const [jobType, setJobType] = useState('');
+  const [budget, setBudget] = useState('');
+  const [imgBase64, setImgBase64] = useState('');
+  const [success, setSuccess] = useState('');
+  const [error, setError] = useState('');
 
-  const handleAddSkill = () => {
-    if (newSkill.trim() !== '') {
-      setSkills([...skills, newSkill]);
-      setNewSkill('');
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  // Job types based on your secondary navigation bar
+  const jobTypes = [
+    'Graphics & Design',
+    'Digital Marketing',
+    'Writing & Translation',
+    'Video & Animation',
+    'Music & Audio',
+    'Programming & Tech',
+    'Photography',
+    'Business',
+  ];
+
+  // Function to handle project creation
+  const handleCreateProject = async (e) => {
+    e.preventDefault();
+    setSuccess('');
+    setError('');
+
+    // Get the user ID from localStorage
+    const userId = localStorage.getItem('userId');
+    if (!userId) {
+      setError('User not authenticated');
+      return;
+    }
+
+    // Validate fields
+    if (!title || !description || !jobType || !budget || !imgBase64) {
+      setError('Please fill in all fields');
+      return;
+    }
+
+    // Prepare the data to send to the backend
+    const jobData = {
+      title,
+      description,
+      jobType,
+      budget: parseFloat(budget),
+      img: imgBase64,
+    };
+
+    try {
+      const response = await fetch(`http://localhost:8888/job/${userId}/listings/create`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(jobData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess('Project created successfully!');
+        setTitle('');
+        setDescription('');
+        setJobType('');
+        setBudget('');
+        setImgBase64('');
+
+        // Redirect to client dashboard after successful creation
+        setTimeout(() => {
+          navigate('/client-dashboard');
+        }, 1000); // Optional delay for user feedback
+      } else {
+        setError(data.message || 'Failed to create project');
+      }
+    } catch (err) {
+      console.error('Error creating project:', err);
+      setError('An error occurred while creating the project');
     }
   };
 
-  const handleRemoveSkill = (index) => {
-    const updatedSkills = skills.filter((_, i) => i !== index);
-    setSkills(updatedSkills);
-  };
-
-  const handleCreateProject = () => {
-    // Handle project creation logic here
-    alert(`Project Created: ${title}`);
+  // Function to convert the uploaded image to base64
+  const handleImageUpload = async (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImgBase64(reader.result);
+      };
+    }
   };
 
   return (
     <div className="create-project-form shadow-sm">
       <h2>Create a Project</h2>
+
+      {/* Success or Error Message */}
+      {success && <Alert variant="success">{success}</Alert>}
+      {error && <Alert variant="danger">{error}</Alert>}
       
       {/* Image Upload Section */}
-      <div className="image-upload-section">
-        <img src="https://via.placeholder.com/600x300" alt="Project" className="project-image" />
-        <Button variant="light" className="upload-button">
-          <i className="bi bi-upload"></i>
-        </Button>
-      </div>
+      <Form.Group className="mb-3">
+        <Form.Label>Upload Project Image</Form.Label>
+        <Form.Control type="file" onChange={handleImageUpload} accept="image/*" />
+        {imgBase64 && (
+          <img
+            src={imgBase64}
+            alt="Uploaded"
+            className="project-image mt-3"
+            style={{ maxHeight: '300px', objectFit: 'cover' }}
+          />
+        )}
+      </Form.Group>
 
       {/* Form Fields */}
-      <Form>
+      <Form onSubmit={handleCreateProject}>
         {/* Title */}
         <Form.Group className="mb-3">
           <Form.Label>Title</Form.Label>
@@ -63,26 +145,18 @@ const CreateProjectForm = () => {
           />
         </Form.Group>
 
-        {/* Skills Required */}
+        {/* Job Type Dropdown */}
         <Form.Group className="mb-3">
-          <Form.Label>Skills Required</Form.Label>
-          <div className="skills-container">
-            {skills.map((skill, index) => (
-              <Badge bg="primary" key={index} className="skill-badge">
-                {skill}
-                <span className="remove-skill" onClick={() => handleRemoveSkill(index)}>×</span>
-              </Badge>
+          <Form.Label>Job Type</Form.Label>
+          <Form.Select
+            value={jobType}
+            onChange={(e) => setJobType(e.target.value)}
+          >
+            <option value="">Select a job type</option>
+            {jobTypes.map((type, index) => (
+              <option key={index} value={type}>{type}</option>
             ))}
-          </div>
-          <InputGroup className="mb-3">
-            <Form.Control
-              type="text"
-              placeholder="Add a new skill"
-              value={newSkill}
-              onChange={(e) => setNewSkill(e.target.value)}
-            />
-            <Button onClick={handleAddSkill} variant="outline-secondary">Add More +</Button>
-          </InputGroup>
+          </Form.Select>
         </Form.Group>
 
         {/* Budget Amount */}
@@ -97,13 +171,10 @@ const CreateProjectForm = () => {
               onChange={(e) => setBudget(e.target.value)}
             />
           </InputGroup>
-          <Form.Text className="text-muted">
-            How much you're willing to pay for the job
-          </Form.Text>
         </Form.Group>
 
         {/* Create Project Button */}
-        <Button variant="primary" className="create-project-button" onClick={handleCreateProject}>
+        <Button variant="primary" type="submit" className="create-project-button">
           Create Project
         </Button>
       </Form>
