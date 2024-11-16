@@ -22,9 +22,13 @@ const FreelancerDashboardPage = ({ onSwap }) => {
         <Container>
             <CustomNavbar />
             <SecondaryNavbar />
-            <SidebarCard />
-            <ActiveProjectsCard />
-            <InfoCards />
+            <div>
+                <SidebarCard />
+                <div>
+                    <ActiveProjectsCard />
+                    <InfoCards />
+                </div>
+            </div>
         </Container>
       );
 }

@@ -47,10 +47,23 @@ const LoginPage = ({ onSwap }) => {
 
       if (response.ok) {
         // Store the token and access level in local storage
+        console.log('Storing in localStorage:', {
+          token: data.token,
+          accessLevel: data.accessLevel,
+          userId: data.userId,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          bio: data.bio,
+        });
+        // Store the token and access level in local storage
         localStorage.setItem('token', data.token);
         localStorage.setItem('accessLevel', data.accessLevel);
-
-        console.log('Access Level:', data.accessLevel);
+        localStorage.setItem('userId', data.userId);
+        localStorage.setItem('firstName', data.firstName);
+        localStorage.setItem('lastName', data.lastName);
+        localStorage.setItem('email', data.email);
+        localStorage.setItem('bio', data.bio);
 
         // Redirect based on access level
         if (data.accessLevel === 1) {
