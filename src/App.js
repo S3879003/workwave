@@ -29,7 +29,7 @@ function App() {
           <Route path="/freelancer-dashboard" element={<FreelancerDashboard />} />
 
           {/* Route for Active Projects Page */}
-          <Route path="/freelancer-projects" element={<ActiveProjectsPage />} />
+          <Route path="/active-projects" element={<ActiveProjectsPage />} />
 
           {/* Route for Client Dashboard */}
           <Route path="/client-dashboard" element={<ClientDashboard />} />

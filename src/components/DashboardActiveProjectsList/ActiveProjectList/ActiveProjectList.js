@@ -1,43 +1,58 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ProjectCard from '../ProjectCard/ProjectCard';
-import './ActiveProjectList.css'
+import './ActiveProjectList.css';
 
 const ActiveProjectList = () => {
-  const projects = [
-    {
-      id: 1,
-      title: 'Looking to hire a UX designer for an iOS and Android app',
-      description:
-        'Lorem Ipsum Dolor Sit Amet, Interdum A Suscipit Et, Consequat Nec Nibh...',
-      image: 'https://via.placeholder.com/400x200',
-    },
-    {
-      id: 2,
-      title: 'Looking to hire a UX designer for an iOS and Android app',
-      description:
-        'Lorem Ipsum Dolor Sit Amet, Interdum A Suscipit Et, Consequat Nec Nibh...',
-      image: 'https://via.placeholder.com/400x200',
-    },
-    {
-      id: 3,
-      title: 'Looking to hire a UX designer for an iOS and Android app',
-      description:
-        'Lorem Ipsum Dolor Sit Amet, Interdum A Suscipit Et, Consequat Nec Nibh...',
-      image: 'https://via.placeholder.com/400x200',
-    },
-  ];
+  const [projects, setProjects] = useState([]);
+  const [error, setError] = useState('');
+
+  const userId = localStorage.getItem('userId');
+
+  // Fetch ongoing projects for the current user
+  const fetchOngoingProjects = async () => {
+    try {
+      const response = await fetch(`http://localhost:8888/job/${userId}/ongoing`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setProjects(data.projects);
+      } else {
+        setError(data.message || 'Failed to fetch ongoing projects');
+      }
+    } catch (err) {
+      console.error('Error fetching ongoing projects:', err);
+      setError('An error occurred while fetching ongoing projects');
+    }
+  };
+
+  useEffect(() => {
+    if (userId) {
+      fetchOngoingProjects();
+    }
+  }, [userId]);
 
   return (
     <div className="active-project-list">
       <h2>Active Projects</h2>
-      {projects.map((project) => (
-        <ProjectCard
-          key={project.id}
-          title={project.title}
-          description={project.description}
-          image={project.image}
-        />
-      ))}
+      {error && <p className="error-message">{error}</p>}
+      {projects.length > 0 ? (
+        projects.map((project) => (
+          <ProjectCard
+            key={project._id}
+            title={project.title}
+            description={project.description}
+            image={project.img}
+            clientName={`${project.userId.firstName} ${project.userId.lastName}`}
+            freelancerName={`${project.freelancerId.firstName} ${project.freelancerId.lastName}`}
+          />
+        ))
+      ) : (
+        <p>No active projects found.</p>
+      )}
     </div>
   );
 };

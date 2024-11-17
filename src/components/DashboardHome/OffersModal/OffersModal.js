@@ -1,35 +1,92 @@
-import React from 'react';
-import { Modal, Button, ListGroup, Badge } from 'react-bootstrap';
-import './OffersModal.css';
+import React, { useEffect, useState } from 'react';
+import { Modal, Button, ListGroup, Alert } from 'react-bootstrap';
 
-const OffersModal = ({ show, handleClose, offers }) => {
+const OffersModal = ({ show, handleClose, jobId, userId }) => {
+  const [bids, setBids] = useState([]);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+
+  // Fetch bids for the job when the modal is opened
+  useEffect(() => {
+    const fetchBids = async () => {
+      if (show) {
+        try {
+          const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/bids`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+          });
+
+          const data = await response.json();
+
+          if (response.ok) {
+            setBids(data.bids);
+          } else {
+            setError(data.message || 'Failed to fetch bids');
+          }
+        } catch (err) {
+          console.error('Error fetching bids:', err);
+          setError('An error occurred while fetching bids');
+        }
+      }
+    };
+
+    fetchBids();
+  }, [show, jobId, userId]);
+
+  const handleAcceptBid = async (freelancerId) => {
+    try {
+      const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/accept/${freelancerId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' }
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess('Freelancer accepted successfully!');
+        setError('');
+      } else {
+        setError(data.message || 'Failed to accept the freelancer.');
+      }
+    } catch (err) {
+      console.error('Error accepting bid:', err);
+      setError('An error occurred while accepting the bid.');
+    }
+  };
+
   return (
     <Modal show={show} onHide={handleClose} centered>
       <Modal.Header closeButton>
-        <Modal.Title>Offers</Modal.Title>
+        <Modal.Title>Job Offers</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <ListGroup variant="flush">
-          {offers.map((offer, index) => (
-            <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
-              <div className="d-flex align-items-center">
-                <div className="profile-picture">{offer.initials}</div>
-                <div className="ms-3">
-                  <h6>{offer.name} <Badge bg="info">{offer.rating} ★</Badge></h6>
-                  <p className="text-muted">@{offer.username}</p>
-                </div>
-              </div>
-              <div>
-                <p>Bid Price: <strong>${offer.price}</strong></p>
-                <Button variant="success" size="sm" className="me-2">Accept</Button>
-                <Button variant="outline-danger" size="sm">Decline</Button>
-              </div>
-            </ListGroup.Item>
-          ))}
-        </ListGroup>
+        {success && <Alert variant="success">{success}</Alert>}
+        {error && <Alert variant="danger">{error}</Alert>}
+
+        {bids.length > 0 ? (
+          <ListGroup>
+            {bids.map((offer, index) => (
+              <ListGroup.Item key={index}>
+                {/* Displaying freelancer's name */}
+                <strong>{offer.freelancerId?.firstName} {offer.freelancerId?.lastName}</strong> - ${offer.amount}
+                <Button
+                  variant="success"
+                  className="ms-3"
+                  onClick={() => handleAcceptBid(offer.freelancerId._id)}
+                >
+                  Accept Bid
+                </Button>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        ) : (
+          <p>No offers available.</p>
+        )}
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
       </Modal.Footer>
     </Modal>
   );

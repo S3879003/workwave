@@ -21,7 +21,7 @@ const FreelancerDashboardPage = ({ onSwap }) => {
     return (
         <Container>
             <CustomNavbar />
-            <SecondaryNavbar />
+            {/* <SecondaryNavbar /> */}
             <div>
                 <SidebarCard />
                 <div>

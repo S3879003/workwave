@@ -3,7 +3,7 @@ import { Card, Button, Badge } from 'react-bootstrap';
 import OffersModal from '../OffersModal/OffersModal';
 import './CurrentJobCard.css';
 
-const JobCard = ({ company, title, image, rating, offers }) => {
+const JobCard = ({ job, userId }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
@@ -13,17 +13,37 @@ const JobCard = ({ company, title, image, rating, offers }) => {
     <>
       <Card className="job-post-card shadow-sm">
         <Card.Body>
-          <h6>{company} <Badge bg={rating ? "info" : "secondary"}>{rating || "New User"}</Badge></h6>
-          <Card.Img variant="top" src={image} className="job-image" />
-          <Card.Title className="mt-3">{title}</Card.Title>
-          <Button variant="outline-primary" className="view-offers-btn" onClick={handleShowModal}>
+          {/* Display the job owner's name */}
+          <h6>
+            {`${job.userId.firstName} ${job.userId.lastName}`} 
+            <Badge bg={job.rating ? "info" : "secondary"} className="ms-2">
+              {job.rating || "New User"}
+            </Badge>
+          </h6>
+
+          {/* Job Image */}
+          <Card.Img variant="top" src={job.img} className="job-image" />
+
+          {/* Job Title and Budget */}
+          <Card.Title className="mt-3">{job.title}</Card.Title>
+          <div className="job-budget">
+            <strong>Budget:</strong> ${job.budget}
+          </div>
+
+          {/* Button to view offers */}
+          <Button variant="outline-primary" className="view-offers-btn mt-3" onClick={handleShowModal}>
             View Offers
           </Button>
         </Card.Body>
       </Card>
 
       {/* Offers Modal */}
-      <OffersModal show={showModal} handleClose={handleCloseModal} offers={offers} />
+      <OffersModal
+        show={showModal}
+        handleClose={handleCloseModal}
+        jobId={job._id}
+        userId={userId}
+      />
     </>
   );
 };

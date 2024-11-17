@@ -5,7 +5,6 @@ import './JobCardList.css';
 const JobPostsList = () => {
   const [jobPosts, setJobPosts] = useState([]);
   const [error, setError] = useState('');
-
   const userId = localStorage.getItem('userId');
 
   const fetchActiveJobs = async () => {
@@ -40,14 +39,11 @@ const JobPostsList = () => {
       {error && <p className="error-message">{error}</p>}
       <div className="job-cards">
         {jobPosts.length > 0 ? (
-          jobPosts.map((post, index) => (
+          jobPosts.map((job, index) => (
             <JobCard
               key={index}
-              company={`${post.userId.firstName} ${post.userId.lastName}`}
-              title={post.title}
-              image={post.img}
-              rating="Top Rated"
-              offers={post.offers || []}
+              job={job}
+              userId={userId}
             />
           ))
         ) : (

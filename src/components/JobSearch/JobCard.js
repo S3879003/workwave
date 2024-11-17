@@ -6,7 +6,6 @@ const JobCard = ({ job, handleShowModal }) => {
   return (
     <Card className="job-card shadow-sm" onClick={() => handleShowModal(job)}>
       <Card.Body>
-        {/* Company Information */}
         <div className="company-info mb-3">
           <h6 className="company-name">{job.company}</h6>
           <Badge bg={job.rating ? "info" : "secondary"} className="top-rated">
@@ -14,25 +13,14 @@ const JobCard = ({ job, handleShowModal }) => {
           </Badge>
         </div>
 
-        {/* Job Image */}
-        <Card.Img
-          variant="top"
-          src={job.image}
-          alt="Job"
-          className="job-image"
-        />
+        <Card.Img variant="top" src={job.image} alt="Job" className="job-image" />
 
-        {/* Job Description */}
-        <Card.Text className="job-description mt-3">
-          {job.title}
-        </Card.Text>
+        <Card.Text className="job-description mt-3">{job.title}</Card.Text>
 
-        {/* Budget Information */}
         <div className="budget-info">
           <strong>BUDGET</strong> <span>${job.budget}</span>
         </div>
 
-        {/* View Details Button */}
         <Button variant="outline-primary" className="view-details-btn">
           View Details
         </Button>
