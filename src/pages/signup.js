@@ -8,36 +8,46 @@ const SignUpPage = ({ onSwap }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [accessLevel, setAccessLevel] = useState(1); // Default to freelancer
+  const [accessLevel, setAccessLevel] = useState(1);
+  const [profilePicture, setProfilePicture] = useState(null);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Handle file input change
+  const handleProfilePictureChange = (e) => {
+    setProfilePicture(e.target.files[0]);
+  };
+
+  // Handle signup form submission
   const handleSignUp = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
 
-    // Check if passwords match
+    // Validate passwords
     if (password !== confirmPassword) {
       setError("Passwords do not match");
       setLoading(false);
       return;
     }
 
+    // Create FormData object
+    const formData = new FormData();
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('email', email);
+    formData.append('password', password);
+    formData.append('accessLevel', accessLevel);
+    if (profilePicture) {
+      formData.append('profilePicture', profilePicture);
+    }
+
     try {
+      // Make a POST request to the signup endpoint
       const response = await fetch('http://localhost:8888/auth/signup', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstName,
-          lastName,
-          email,
-          password,
-          accessLevel,
-        }),
+        body: formData,
       });
 
       const data = await response.json();
@@ -72,68 +82,32 @@ const SignUpPage = ({ onSwap }) => {
             <Form onSubmit={handleSignUp}>
               <Form.Group controlId="formFirstName" className="mb-3">
                 <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="First Name"
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  required
-                />
+                <Form.Control type="text" value={firstName} onChange={(e) => setFirstName(e.target.value)} required />
               </Form.Group>
 
               <Form.Group controlId="formLastName" className="mb-3">
                 <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Last Name"
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  required
-                />
+                <Form.Control type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} required />
               </Form.Group>
 
               <Form.Group controlId="formEmail" className="mb-3">
                 <Form.Label>Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                />
+                <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </Form.Group>
 
               <Form.Group controlId="formPassword" className="mb-3">
                 <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                />
+                <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </Form.Group>
 
               <Form.Group controlId="formConfirmPassword" className="mb-3">
                 <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
-                  required
-                />
+                <Form.Control type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
               </Form.Group>
 
-              <Form.Group controlId="formAccessLevel" className="mb-4">
-                <Form.Label>Account Type</Form.Label>
-                <Form.Select
-                  value={accessLevel}
-                  onChange={(e) => setAccessLevel(parseInt(e.target.value))}
-                >
-                  <option value={1}>Freelancer</option>
-                  <option value={2}>Client</option>
-                </Form.Select>
+              <Form.Group controlId="formProfilePicture" className="mb-3">
+                <Form.Label>Profile Picture</Form.Label>
+                <Form.Control type="file" accept="image/*" onChange={handleProfilePictureChange} />
               </Form.Group>
 
               <Button variant="primary" type="submit" className="w-100 mb-3" disabled={loading}>
@@ -141,24 +115,10 @@ const SignUpPage = ({ onSwap }) => {
               </Button>
 
               <p className="text-center">
-                Already have an account?{' '}
-                <a href="/" onClick={onSwap}>
-                  Login
-                </a>
+                Already have an account? <a href="/" onClick={onSwap}>Login</a>
               </p>
             </Form>
           </div>
-        </Col>
-
-        <Col md={6} className="col-full-height bg-purple">
-          <Card className="text-center shadow" style={{ width: '80%', background: 'rgba(255, 255, 255, 0.22)', borderRadius: '15px' }}>
-            <Card.Body style={{ height: '500px' }}>
-              <Card.Text className="text-white mb-4" style={{ fontSize: '1.25rem' }}>
-                Achieve your goals! Sign up now and accomplish greatness!
-              </Card.Text>
-              <img src="https://via.placeholder.com/150" alt="Motivational" className="img-fluid rounded-circle" />
-            </Card.Body>
-          </Card>
         </Col>
       </Row>
     </Container>
