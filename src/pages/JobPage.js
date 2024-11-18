@@ -8,7 +8,7 @@ const JobPage = ({ onSwap }) => {
   return (
     <Container>
         <CustomNavbar />
-        <SecondaryNavbar />
+        {/* <SecondaryNavbar /> */}
         <JobBoard />
     </Container>
   );

@@ -22,8 +22,8 @@ const ClientDashboard = () => {
             <CustomNavbar />
             <div className='dashboard-container'>
               <SidebarCard />
+              <ActiveProjectsCard />
               <div>
-                <ActiveProjectsCard />
                 <JobPostsList />
               </div> 
             </div>
