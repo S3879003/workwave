@@ -171,7 +171,6 @@ const SidebarCard = () => {
             {renderProfilePicture()}
             <div className="profile-info">
               <h6>{`${firstName} ${lastName}`}</h6>
-              <Badge bg="info">Top Rated</Badge>
             </div>
           </div>
           <p className="profile-description">{bio}</p>

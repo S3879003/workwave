@@ -8,11 +8,15 @@
 // Job Cards Container
 .job-cards {
   display: flex;
-  gap: $spacing-medium; // Using global spacing variable
-  background-color: $background-color; // You can define a beige color in globals if needed
+  flex-wrap: wrap; // Allow items to wrap on smaller screens
+  gap: $spacing-medium;
+  background-color: $background-color; 
   padding: $spacing-medium;
   border-radius: $border-radius;
 
-  // Optional alignment (uncomment if needed)
-  // justify-content: space-between;
+  @media (max-width: 770px) {
+    flex-direction: column; // Stack cards vertically
+    align-items: center; // Center cards horizontally
+    gap: $spacing-small; // Reduce gap for smaller screens
+  }
 }

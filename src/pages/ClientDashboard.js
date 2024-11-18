@@ -5,7 +5,7 @@ import CustomNavbar from '../components/navigation/navbar';
 import SecondaryNavbar from '../components/navigation/SecondaryNavbar';
 import SidebarCard from '../components/Dashboard/SidebarCard/SidebarCard';
 import JobPostsList from '../components/Dashboard/JobCardList/JobCardList';
-import ActiveProjectsCard from '../components/Dashboard/ActiveProjectsCard/ActiveProjectsCard';
+import ActiveProjectsCard from '../components/Dashboard/InProgressProjectsCard/ActiveProjectsCard';
 
 const ClientDashboard = () => {
   const navigate = useNavigate();
@@ -22,10 +22,10 @@ const ClientDashboard = () => {
             <CustomNavbar />
             <div className='dashboard-container'>
               <SidebarCard />
-              <ActiveProjectsCard />
-            </div>
-            <div>
-              <JobPostsList />
+              <div>
+                <ActiveProjectsCard />
+                <JobPostsList />
+              </div> 
             </div>
     </Container>
   );

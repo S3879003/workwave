@@ -3,6 +3,7 @@
 // Project Card Styles
 .project-card {
   display: flex;
+  flex-direction: row;
   align-items: center;
   border-radius: $border-radius;
   overflow: hidden;
@@ -11,10 +12,20 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   padding: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 80%;
+  margin: 0 auto;
 
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  // Responsive styles for smaller screens
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
   }
 }
 
@@ -24,7 +35,14 @@
   align-items: stretch;
   justify-content: space-between;
   width: 100%;
-  height: 200px;
+  height: 250px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+    padding: $spacing-small;
+    height: auto;
+  }
 }
 
 // Project Image Container
@@ -33,6 +51,12 @@
   max-width: 300px;
   height: 100%;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    max-width: none;
+    height: 200px;
+  }
 }
 
 .project-image {
@@ -40,12 +64,22 @@
   height: 100%;
   object-fit: cover;
   border-radius: $border-radius 0 0 $border-radius;
+
+  @media (max-width: 768px) {
+    border-radius: $border-radius $border-radius 0 0;
+  }
 }
 
 // Project Info Section
 .project-info {
   flex: 2;
-  padding: $spacing-medium;
+  padding: $spacing-large;
+
+  text-align: left;
+
+  @media (max-width: 768px) {
+    padding: $spacing-small;
+  }
 }
 
 .project-title {
@@ -55,14 +89,9 @@
 }
 
 .project-description {
-  color: $text-color-light; // Assuming a lighter text color in globals
+  color: $text-color-light;
   font-size: 0.9rem;
   margin-bottom: $spacing-small;
-}
-
-.project-client-freelancer {
-  margin-top: $spacing-small;
-  font-size: 0.85rem;
 }
 
 // Project Actions Section
@@ -71,35 +100,19 @@
   flex-direction: column;
   align-items: flex-end;
   justify-content: center;
+  width: 300px;
   padding: $spacing-medium;
   gap: $spacing-small;
-}
 
-// Complete Job Button
-.complete-job-btn {
-  background-color: $secondary-color;
-  color: $white-color;
-  border-radius: 20px;
-  padding: $spacing-small $spacing-medium;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-
-  &:hover {
-    background-color: darken($secondary-color, 10%);
+  @media (max-width: 768px) {
+    align-items: center;
+    padding: $spacing-small;
+    width: 100%;
   }
-}
 
-// Cancel Job Button
-.cancel-job-btn {
-  border-radius: 20px;
-  padding: $spacing-small $spacing-medium;
-  border: 1px solid $secondary-color;
-  cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
-
-  &:hover {
-    background-color: $white-color;
-    color: $secondary-color;
+  button {
+    width: 100%;
+    max-width: 200px; // Limit button width on smaller screens
+    margin-bottom: $spacing-small;
   }
 }

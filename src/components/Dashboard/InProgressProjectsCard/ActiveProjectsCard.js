@@ -13,7 +13,8 @@ const ActiveProjectsCard = () => {
   return (
     <Card className="active-projects-card shadow-sm">
       <Card.Body>
-        <h6>Pending Tasks</h6>
+        <h6>Jobs still being worked on</h6>
+        <h4>In progress jobs (5)</h4>
         <Button variant="primary" className="w-100" onClick={handleRedirect}>
           Active Projects (5)
         </Button>
