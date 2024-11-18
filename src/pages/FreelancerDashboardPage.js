@@ -8,6 +8,7 @@ import SidebarCard from '../components/Dashboard/SidebarCard/SidebarCard'
 import ActiveProjectsCard from '../components/Dashboard/ActiveProjectsCard/ActiveProjectsCard'
 import InfoCards from '../components/Dashboard/InfoCards/InfoCards'
 
+
 const FreelancerDashboardPage = ({ onSwap }) => {
     const navigate = useNavigate();
 
@@ -21,11 +22,10 @@ const FreelancerDashboardPage = ({ onSwap }) => {
     return (
         <Container>
             <CustomNavbar />
-            {/* <SecondaryNavbar /> */}
-            <div>
+            <div className='dashboard-container'>
                 <SidebarCard />
+                <ActiveProjectsCard />
                 <div>
-                    <ActiveProjectsCard />
                     <InfoCards />
                 </div>
             </div>

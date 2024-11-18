@@ -19,11 +19,14 @@ const ClientDashboard = () => {
 
   return (
     <Container>
-      <CustomNavbar />
-      {/* <SecondaryNavbar /> */}
-      <SidebarCard />
-      <ActiveProjectsCard />
-      <JobPostsList />
+            <CustomNavbar />
+            <div className='dashboard-container'>
+              <SidebarCard />
+              <ActiveProjectsCard />
+            </div>
+            <div>
+              <JobPostsList />
+            </div>
     </Container>
   );
 };
