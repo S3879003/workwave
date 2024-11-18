@@ -1,0 +1,17 @@
+@import '/src/styles/globals';
+// Job Posts List Container
+.job-posts-list {
+  margin-top: $spacing-large; // Using global spacing variable
+}
+
+// Job Cards Container
+.job-cards {
+  display: flex;
+  gap: $spacing-medium; // Using global spacing variable
+  background-color: $background-color; // You can define a beige color in globals if needed
+  padding: $spacing-medium;
+  border-radius: $border-radius;
+
+  // Optional alignment (uncomment if needed)
+  // justify-content: space-between;
+}

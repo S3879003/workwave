@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import JobCard from './JobCard';
 import JobDetailsModal from './JobDetailsModal/JobDetailsModal';
-import './JobBoard.css';
+import './JobBoard.scss';
 
 const JobBoard = () => {
   const [jobs, setJobs] = useState([]);

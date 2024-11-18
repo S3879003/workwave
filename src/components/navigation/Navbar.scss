@@ -1,0 +1,41 @@
+@import '/src/styles/globals';
+
+.custom-navbar {
+  border-radius: $border-radius;
+  background-color: $primary-color;
+  width: 90vw;
+  margin: 25px auto;
+  height: $navbar-height;
+}
+
+.search-bar {
+  flex-grow: 1;
+  max-width: 500px;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 5px;
+  border-radius: $search-bar-radius;
+
+  input {
+    border: none;
+    outline: none;
+    border-radius: $search-bar-radius;
+    flex-grow: 1;
+  }
+}
+
+.search-button {
+  background-color: $primary-color;
+  border: none;
+  cursor: pointer;
+}
+
+.profile-button {
+  width: $profile-button-size;
+  height: $profile-button-size;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}

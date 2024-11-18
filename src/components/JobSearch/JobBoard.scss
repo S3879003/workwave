@@ -1,0 +1,20 @@
+@import '/src/styles/globals';
+
+.job-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: $spacing-medium;
+}
+
+.job-card {
+  background-color: white;
+  padding: $spacing-medium;
+  border-radius: $border-radius;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.job-details-modal {
+  background-color: $primary-color;
+  padding: $spacing-large;
+  border-radius: $border-radius;
+}

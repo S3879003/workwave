@@ -1,0 +1,13 @@
+@import '/src/styles/globals';
+
+.sidebar-card {
+  background-color: $background-color;
+  border-radius: $border-radius;
+  padding: $spacing-medium;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  .card-title {
+    font-size: 1.5rem;
+    color: $primary-color;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
-import './JobCard.css';
+import './JobCard.scss';
 
 const JobCard = ({ job, handleShowModal }) => {
   return (

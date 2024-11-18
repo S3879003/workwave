@@ -1,15 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.scss';
 
 // Import your components
-import LoginPage from './components/pages/login';
-import SignupPage from './components/pages/signup';
-import JobPage from './components/pages/JobPage';
-import FreelancerDashboard from './components/pages/FreelancerDashboardPage';
-import ActiveProjectsPage from './components/pages/ActiveProjectsPage';
-import ClientDashboard from './components/pages/ClientDashboard';
-import CreateProjectForm from './components/pages/CreateProjectPage';
+import LoginPage from './pages/login';
+import SignupPage from './pages/signup';
+import JobPage from './pages/JobPage';
+import FreelancerDashboard from './pages/FreelancerDashboardPage';
+import ActiveProjectsPage from './pages/ActiveProjectsPage';
+import ClientDashboard from './pages/ClientDashboard';
+import CreateProjectForm from './pages/CreateProjectPage';
 
 function App() {
   return (

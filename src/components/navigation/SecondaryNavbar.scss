@@ -1,0 +1,24 @@
+@import '/src/styles/globals';
+
+// Secondary Navbar Styles
+.secondary-navbar {
+  background-color: $primary-color; // Using the primary color from globals
+  padding: $spacing-small;
+  border-radius: $border-radius;
+  margin: $spacing-medium auto;
+  width: 80vw;
+  font-size: 14px;
+
+  // Nav Links
+  .nav-link {
+    color: $white-color !important;
+    font-weight: 500;
+    margin: 0;
+    transition: color 0.3s ease-in-out;
+
+    &:hover {
+      color: $link-hover-color !important;
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Nav } from 'react-bootstrap';
-import './SecondaryNavbar.css';
+import './SecondaryNavbar.scss';
 
 const SecondaryNavbar = () => {
   return (

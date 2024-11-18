@@ -1,0 +1,59 @@
+@import '/src/styles/globals';
+
+// Job Card Styles
+.job-card {
+  cursor: pointer;
+  border-radius: $border-radius;
+  margin-bottom: $spacing-medium;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Company Info Section
+.company-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Job Image
+.job-image {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+  width: 100%;
+}
+
+// Job Description
+.job-description {
+  margin-top: $spacing-small;
+}
+
+// Budget Info
+.budget-info {
+  font-size: 1rem;
+  font-weight: bold;
+  color: $text-color;
+  margin-top: $spacing-small;
+}
+
+// View Details Button
+.view-details-btn {
+  margin-top: $spacing-small;
+  width: 100%;
+  background-color: $primary-color;
+  border: none;
+  padding: $spacing-small;
+  border-radius: $border-radius;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: $primary-color-hover;
+  }
+}

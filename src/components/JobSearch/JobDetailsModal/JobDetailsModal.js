@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form, Badge, Alert } from 'react-bootstrap';
-import './JobDetailsModal.css';
+import './JobDetailsModal.scss';
 
 const JobDetailsModal = ({ show, handleClose, job }) => {
   const [bidAmount, setBidAmount] = useState('');

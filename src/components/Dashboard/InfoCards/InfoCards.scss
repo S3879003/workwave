@@ -1,0 +1,25 @@
+@import '/src/styles/globals';
+
+// Info Cards Container
+.info-cards-container {
+  display: flex;
+  justify-content: space-between;
+  gap: $spacing-medium; // Using global spacing variable
+  margin-top: $spacing-medium; // Using global spacing variable
+}
+
+// Individual Info Card
+.info-card {
+  flex: 1;
+  border-radius: $border-radius;
+  padding: $spacing-medium;
+  max-width: 350px;
+  background-color: $background-color;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+}

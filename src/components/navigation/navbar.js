@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navbar as BootstrapNavbar, Container, Form, FormControl, Button, Nav, Navbar } from 'react-bootstrap';
-import './Navbar.css';
+import './Navbar.scss';
 
 const CustomNavbar = () => {
   return (

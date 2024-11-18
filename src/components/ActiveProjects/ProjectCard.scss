@@ -1,0 +1,105 @@
+@import '/src/styles/globals';
+
+// Project Card Styles
+.project-card {
+  display: flex;
+  align-items: center;
+  border-radius: $border-radius;
+  overflow: hidden;
+  margin-bottom: $spacing-medium;
+  background-color: $white-color;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Project Card Body
+.project-card-body {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  height: 200px;
+}
+
+// Project Image Container
+.project-image-container {
+  flex: 1;
+  max-width: 300px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: $border-radius 0 0 $border-radius;
+}
+
+// Project Info Section
+.project-info {
+  flex: 2;
+  padding: $spacing-medium;
+}
+
+.project-title {
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-bottom: $spacing-small;
+}
+
+.project-description {
+  color: $text-color-light; // Assuming a lighter text color in globals
+  font-size: 0.9rem;
+  margin-bottom: $spacing-small;
+}
+
+.project-client-freelancer {
+  margin-top: $spacing-small;
+  font-size: 0.85rem;
+}
+
+// Project Actions Section
+.project-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: $spacing-medium;
+  gap: $spacing-small;
+}
+
+// Complete Job Button
+.complete-job-btn {
+  background-color: $secondary-color;
+  color: $white-color;
+  border-radius: 20px;
+  padding: $spacing-small $spacing-medium;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: darken($secondary-color, 10%);
+  }
+}
+
+// Cancel Job Button
+.cancel-job-btn {
+  border-radius: 20px;
+  padding: $spacing-small $spacing-medium;
+  border: 1px solid $secondary-color;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: $white-color;
+    color: $secondary-color;
+  }
+}

@@ -1,0 +1,50 @@
+@import '/src/styles/globals';
+
+// Job Image Container
+.job-image-container {
+  text-align: center;
+  margin-bottom: $spacing-medium;
+}
+
+.job-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+// Job Description
+.job-description {
+  margin: $spacing-medium 0;
+}
+
+// Skills Container
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-small;
+  margin-bottom: $spacing-medium;
+}
+
+// Skill Badge
+.skill-badge {
+  background-color: $secondary-color; // Using a global color
+  padding: $spacing-small $spacing-medium;
+  border-radius: 20px;
+  color: $white-color;
+}
+
+// Submit Offer Button
+.submit-offer-btn {
+  width: 100%;
+  margin-top: $spacing-medium;
+  background-color: $primary-color;
+  border: none;
+  padding: $spacing-small;
+  border-radius: $border-radius;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+
+  &:hover {
+    background-color: darken($primary-color, 10%);
+  }
+}

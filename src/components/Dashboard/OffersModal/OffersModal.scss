@@ -1,0 +1,14 @@
+@import '/src/styles/globals';
+
+// Profile Picture Styles
+.profile-picture {
+  background-color: $primary-color; // Using the primary color variable
+  color: $white-color;
+  font-size: 1rem;
+  border-radius: 50%;
+  width: $profile-button-size;
+  height: $profile-button-size;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
