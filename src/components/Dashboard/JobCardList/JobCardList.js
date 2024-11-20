@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import JobCard from '../CurrentJobCard/CurrentJobCard';
 import './JobCardList.scss';
 
@@ -7,15 +7,15 @@ const JobPostsList = () => {
   const [error, setError] = useState('');
   const userId = localStorage.getItem('userId');
 
-  const fetchActiveJobs = async () => {
+  const fetchActiveJobs = useCallback(async () => {
     try {
       const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/active`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
-
+  
       const data = await response.json();
-
+  
       if (response.ok) {
         setJobPosts(data.jobs);
       } else {
@@ -25,13 +25,13 @@ const JobPostsList = () => {
       console.error('Error fetching active jobs:', err);
       setError('An error occurred while fetching active jobs');
     }
-  };
-
+  }, [userId]); // 'userId' is a dependency
+  
   useEffect(() => {
     if (userId) {
       fetchActiveJobs();
     }
-  }, [userId]);
+  }, [fetchActiveJobs, userId]);
 
   return (
     <div className="job-posts-list">
