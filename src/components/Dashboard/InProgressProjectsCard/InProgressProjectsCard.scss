@@ -20,4 +20,8 @@
   button{
     border: 1px $white-color solid;
   }
+    // Responsive styles for smaller screens
+    @media (max-width: 768px) {
+      margin: 0 auto;
+    }
 }

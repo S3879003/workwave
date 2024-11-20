@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
-import './ActiveProjectList.scss';
+import './ProjectList.scss';
 
 const ActiveProjectList = () => {
   const [projects, setProjects] = useState([]);
@@ -8,10 +8,12 @@ const ActiveProjectList = () => {
 
   const userId = localStorage.getItem('userId');
 
+  console.log(userId)
+
   // Fetch ongoing projects for the current user
   const fetchOngoingProjects = async () => {
     try {
-      const response = await fetch(`http://localhost:8888/job/${userId}/ongoing`, {
+      const response = await fetch(`${BACKEND_API}/job/${userId}/ongoing`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -37,12 +39,14 @@ const ActiveProjectList = () => {
 
   return (
     <div className="active-project-list">
-      <h2>Active Projects</h2>
+      <h2>Jobs in Progress</h2>
       {error && <p className="error-message">{error}</p>}
       {projects.length > 0 ? (
         projects.map((project) => (
           <ProjectCard
             key={project._id}
+            jobid={project._id}
+            userId={userId}
             title={project.title}
             description={project.description}
             image={project.img}
@@ -51,7 +55,7 @@ const ActiveProjectList = () => {
           />
         ))
       ) : (
-        <p>No active projects found.</p>
+        <p>No jobs currently underway.</p>
       )}
     </div>
   );

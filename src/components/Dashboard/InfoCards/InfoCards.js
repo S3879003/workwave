@@ -1,8 +1,20 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './InfoCards.scss';
 
 const InfoCards = () => {
+  const navigate = useNavigate(); // Initialize navigate
+
+  // Function to handle button click
+  const handleButtonClick = (buttonText) => {
+    if (buttonText === "Explore Jobs") {
+      navigate('/jobs'); // Navigate to the jobs page
+    } else {
+      console.log(`${buttonText} button clicked`); // Handle other buttons as needed
+    }
+  };
+
   const cards = [
     {
       title: "Get noticed",
@@ -28,7 +40,12 @@ const InfoCards = () => {
           <Card.Body>
             <h6>{card.title}</h6>
             <p>{card.text}</p>
-            <Button variant="outline-primary">{card.button}</Button>
+            <Button
+              variant="outline-primary"
+              onClick={() => handleButtonClick(card.button)} // Add onClick handler
+            >
+              {card.button}
+            </Button>
           </Card.Body>
         </Card>
       ))}

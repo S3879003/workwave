@@ -8,7 +8,7 @@ import LoginPage from './pages/login';
 import SignupPage from './pages/signup';
 import JobPage from './pages/JobPage';
 import FreelancerDashboard from './pages/FreelancerDashboardPage';
-import ActiveProjectsPage from './pages/ActiveProjectsPage';
+import InprogressProjects from './pages/InProgressProjectsPage';
 import ClientDashboard from './pages/ClientDashboard';
 import CreateProjectForm from './pages/CreateProjectPage';
 
@@ -30,7 +30,7 @@ function App() {
           <Route path="/freelancer-dashboard" element={<FreelancerDashboard />} />
 
           {/* Route for Active Projects Page */}
-          <Route path="/active-projects" element={<ActiveProjectsPage />} />
+          <Route path="/ongoing-projects" element={<InprogressProjects />} />
 
           {/* Route for Client Dashboard */}
           <Route path="/client-dashboard" element={<ClientDashboard />} />

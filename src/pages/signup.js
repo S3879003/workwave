@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+const dotenv = require('dotenv');
 import './LoginPage.scss';
 
 const SignUpPage = ({ onSwap }) => {
@@ -45,7 +46,7 @@ const SignUpPage = ({ onSwap }) => {
 
     try {
       // Make a POST request to the signup endpoint
-      const response = await fetch('http://localhost:8888/auth/signup', {
+      const response = await fetch(`${BACKEND_API}/auth/signup`, {
         method: 'POST',
         body: formData,
       });

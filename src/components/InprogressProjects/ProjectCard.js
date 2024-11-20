@@ -2,17 +2,17 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import './ProjectCard.scss';
 
-const ProjectCard = ({ jobId, userId, title, description, image, onComplete, onCancel }) => {
+const ProjectCard = ({ jobid, userId, title, description, image, onComplete, onCancel }) => {
   const handleCompleteJob = async () => {
     try {
-      const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/complete`, {
+      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobid}/complete`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
       });
 
       if (response.ok) {
         alert('Job marked as complete!');
-        onComplete(jobId);
+        window.location.reload();
       }
     } catch (err) {
       alert('An error occurred while completing the job');
@@ -22,14 +22,14 @@ const ProjectCard = ({ jobId, userId, title, description, image, onComplete, onC
   const handleCancelJob = async () => {
     if (window.confirm('Are you sure you want to cancel this job?')) {
       try {
-        const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/delete`, {
+        const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobid}/delete`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         });
 
         if (response.ok) {
           alert('Job deleted successfully');
-          onCancel(jobId);
+          window.location.reload();
         }
       } catch (err) {
         alert('An error occurred while deleting the job');

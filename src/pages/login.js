@@ -33,7 +33,7 @@ const LoginPage = ({ onSwap }) => {
     console.log('Logging in with:', { email, password });
 
     try {
-      const response = await fetch('http://localhost:8888/auth/signin', {
+      const response = await fetch(`${BACKEND_API}/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

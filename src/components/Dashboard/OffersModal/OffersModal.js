@@ -11,7 +11,7 @@ const OffersModal = ({ show, handleClose, jobId, userId }) => {
     const fetchBids = async () => {
       if (show) {
         try {
-          const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/bids`, {
+          const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobId}/bids`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
           });
@@ -35,7 +35,7 @@ const OffersModal = ({ show, handleClose, jobId, userId }) => {
 
   const handleAcceptBid = async (freelancerId) => {
     try {
-      const response = await fetch(`http://localhost:8888/job/${userId}/listings/${jobId}/accept/${freelancerId}`, {
+      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobId}/accept/${freelancerId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });

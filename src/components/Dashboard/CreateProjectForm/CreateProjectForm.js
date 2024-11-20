@@ -55,7 +55,7 @@ const CreateProjectForm = () => {
     };
 
     try {
-      const response = await fetch(`http://localhost:8888/job/${userId}/listings/create`, {
+      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const CreateProjectForm = () => {
   };
 
   return (
-    <div className="create-project-form shadow-sm">
+    <div className="create-project-form">
       <h2>Create a Project</h2>
 
       {/* Success or Error Message */}

@@ -3,9 +3,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import CustomNavbar from '../components/navigation/navbar';
-import SecondaryNavbar from '../components/navigation/SecondaryNavbar';
 import SidebarCard from '../components/Dashboard/SidebarCard/SidebarCard'
-import ActiveProjectsCard from '../components/Dashboard/ActiveProjectsCard/ActiveProjectsCard'
+import InProgressProjectsCard from '../components/Dashboard/InProgressProjectsCard/InProgressProjectsCard'
 import InfoCards from '../components/Dashboard/InfoCards/InfoCards'
 
 
@@ -24,9 +23,9 @@ const FreelancerDashboardPage = ({ onSwap }) => {
             <CustomNavbar />
             <div className='dashboard-container'>
                 <SidebarCard />
-                <ActiveProjectsCard />
                 <div>
-                    <InfoCards />
+                  <InProgressProjectsCard />
+                  <InfoCards />
                 </div>
             </div>
         </Container>

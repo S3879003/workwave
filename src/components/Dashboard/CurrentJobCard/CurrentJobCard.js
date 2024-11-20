@@ -16,9 +16,6 @@ const JobCard = ({ job, userId }) => {
           {/* Display the job owner's name */}
           <h6>
             {`${job.userId.firstName} ${job.userId.lastName}`} 
-            <Badge bg={job.rating ? "info" : "secondary"} className="ms-2">
-              {job.rating || "New User"}
-            </Badge>
           </h6>
 
           {/* Job Image */}

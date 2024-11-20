@@ -14,6 +14,19 @@
   }
 }
 
+.profile-img-container{
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  text-align: center; /* Ensure text aligns properly */
+  margin-bottom: $spacing-medium; /* Add some space below the section */
+}
+
 .profile-img{
-  margin: 0 auto;
+  width: 200px; /* Set image size */
+  height: 200px;
+  object-fit: cover; /* Ensure the image retains proportions */
+  border-radius: 50%; /* Make it circular */
+  margin-bottom: $spacing-small; /* Add spacing below the image */
 }

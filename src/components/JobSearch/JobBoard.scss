@@ -1,9 +1,16 @@
 @import '/src/styles/globals';
 
-.job-board {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: $spacing-medium;
+.JobBoard {
+  display: flex;
+  flex-wrap: wrap; // Allow items to wrap on smaller screens
+  gap: 12px;
+
+  // Responsive styles for smaller screens
+  // @media (max-width: 768px) {
+  //   display: flex;
+  //   flex-direction: column;
+  //   width: 100%;
+  // }
 }
 
 .job-card {
@@ -11,10 +18,21 @@
   padding: $spacing-medium;
   border-radius: $border-radius;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    margin: 0 auto;
+  }
 }
 
 .job-details-modal {
   background-color: $primary-color;
   padding: $spacing-large;
   border-radius: $border-radius;
+}
+
+@media (max-width: 768px) {
+  h2 {
+    width: 100%;
+    text-align: center;
+  }
 }

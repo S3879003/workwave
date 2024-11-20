@@ -25,7 +25,7 @@ const JobBoard = () => {
   // Fetch all active jobs from the backend
   const fetchActiveJobs = async () => {
     try {
-      const response = await fetch('http://localhost:8888/job/listings/active', {
+      const response = await fetch(`${BACKEND_API}/job/listings/active`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -60,38 +60,39 @@ const JobBoard = () => {
   };
 
   return (
-    <div className="JobBoard">
+    <div>
       <h2>Available Job Listings</h2>
-      {error && <p className="error-message">{error}</p>}
+      <div className="JobBoard">
+        {error && <p className="error-message">{error}</p>}
 
-      {jobs.length > 0 ? (
-        jobs.map((job) => (
-          <JobCard
-            key={job._id}
-            job={{
-              id: job._id,
-              company: `${job.userId.firstName} ${job.userId.lastName}`,
-              title: job.title,
-              description: job.description,
-              image: job.img,
-              skills: job.skills || [],
-              budget: job.budget,
-              rating: 'Top Rated',
-            }}
-            handleShowModal={handleShowModal}
+        {jobs.length > 0 ? (
+          jobs.map((job) => (
+            <JobCard
+              key={job._id}
+              job={{
+                id: job._id,
+                company: `${job.userId.firstName} ${job.userId.lastName}`,
+                title: job.title,
+                description: job.description,
+                image: job.img,
+                jobType: job.jobType || [],
+                budget: job.budget,
+              }}
+              handleShowModal={handleShowModal}
+            />
+          ))
+        ) : (
+          <p>No active job postings available.</p>
+        )}
+
+        {selectedJob && (
+          <JobDetailsModal
+            show={showModal}
+            handleClose={handleCloseModal}
+            job={selectedJob}
           />
-        ))
-      ) : (
-        <p>No active job postings available.</p>
-      )}
-
-      {selectedJob && (
-        <JobDetailsModal
-          show={showModal}
-          handleClose={handleCloseModal}
-          job={selectedJob}
-        />
-      )}
+        )}
+      </div>
     </div>
   );
 };

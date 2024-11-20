@@ -15,6 +15,33 @@ const SidebarCard = () => {
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [user, setUser] = useState(null);
+
+
+  // Fetch user data (profile picture, first name, and user type) from localStorage or API
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = localStorage.getItem('userId');
+        const token = localStorage.getItem('token');
+
+        const response = await fetch(`${BACKEND_API}/user/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data);
+        }
+      } catch (err) {
+        console.error('Failed to fetch user data:', err);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   // Open and close modal functions
   const handleOpenModal = () => setShowModal(true);
@@ -31,7 +58,7 @@ const SidebarCard = () => {
     setSuccess('');
 
     try {
-      const response = await fetch(`http://localhost:8888/user/${userId}/bio`, {
+      const response = await fetch(`${BACKEND_API}/user/${userId}/bio`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bio }),
@@ -57,7 +84,7 @@ const SidebarCard = () => {
     }
 
     try {
-      const response = await fetch(`http://localhost:8888/user/${userId}/password`, {
+      const response = await fetch(`${BACKEND_API}/user/${userId}/password`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
@@ -81,7 +108,7 @@ const SidebarCard = () => {
     setSuccess('');
 
     try {
-      const response = await fetch(`http://localhost:8888/user/${userId}/email`, {
+      const response = await fetch(`${BACKEND_API}/user/${userId}/email`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: newEmail }),
@@ -113,7 +140,7 @@ const SidebarCard = () => {
     formData.append('profilePicture', newProfilePicture);
 
     try {
-      const response = await fetch(`http://localhost:8888/user/${userId}/profile-picture`, {
+      const response = await fetch(`${BACKEND_API}/user/${userId}/profile-picture`, {
         method: 'PUT',
         body: formData,
       });
@@ -135,7 +162,7 @@ const SidebarCard = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm('Are you sure you want to delete your account? This action is irreversible.')) {
       try {
-        const response = await fetch(`http://localhost:8888/user/${userId}`, {
+        const response = await fetch(`${BACKEND_API}/user/${userId}`, {
           method: 'DELETE',
         });
 
@@ -156,8 +183,8 @@ const SidebarCard = () => {
 
   // Render profile initials or picture
   const renderProfilePicture = () => {
-    if (profilePicture) {
-      let displayProfilePicture = `http://localhost:8888${profilePicture}`
+    if (user?.profilePicture) {
+      let displayProfilePicture = `${BACKEND_API}${user.profilePicture}`
       return <img src={displayProfilePicture} alt="Profile" className="profile-img" />;
     }
     return <div className="profile-initials">{firstName.charAt(0)}</div>;
@@ -168,7 +195,9 @@ const SidebarCard = () => {
       <Card className="sidebar-card shadow-sm">
         <Card.Body>
           <div className="profile-section">
-            {renderProfilePicture()}
+            <div className="profile-img-container">
+              {renderProfilePicture()}
+            </div>
             <div className="profile-info">
               <h6>{`${firstName} ${lastName}`}</h6>
             </div>

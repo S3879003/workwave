@@ -9,7 +9,7 @@ const JobPostsList = () => {
 
   const fetchActiveJobs = async () => {
     try {
-      const response = await fetch(`http://localhost:8888/job/${userId}/listings/active`, {
+      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/active`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

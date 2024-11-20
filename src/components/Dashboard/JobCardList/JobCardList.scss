@@ -9,7 +9,7 @@
 .job-cards {
   display: flex;
   flex-wrap: wrap; // Allow items to wrap on smaller screens
-  gap: $spacing-medium;
+  gap: 12px;
   background-color: $background-color; 
   padding: $spacing-medium;
   border-radius: $border-radius;
