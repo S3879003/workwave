@@ -129,9 +129,9 @@ const LoginPage = ({ onSwap }) => {
 
         <Col md={6} className="col-full-height bg-purple">
           <Card
-            className="text-center shadow"
+            className="text-center shadow col-width-m"
             style={{
-              width: '80%',
+              width: '425px',
               background: 'rgba(255, 255, 255, 0.22)',
               border: 'rgba(255, 255, 255, 0.22) 2px solid',
               borderRadius: '15px',
@@ -141,7 +141,7 @@ const LoginPage = ({ onSwap }) => {
               <Card.Text className="text-white mb-4" style={{ fontSize: '1.25rem' }}>
                 Achieve your goals! Login now and accomplish greatness!
               </Card.Text>
-              <img src="https://via.placeholder.com/150" alt="Motivational" className="img-fluid rounded-circle" />
+              <img src="../imgs/female.png" alt="Motivational" className="img-fluid" />
             </Card.Body>
           </Card>
         </Col>
