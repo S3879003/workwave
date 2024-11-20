@@ -9,6 +9,7 @@ module.exports = function override(config) {
     buffer: require.resolve('buffer'), // Polyfill buffer
     stream: require.resolve('stream-browserify'), // Polyfill stream
     process: require.resolve('process/browser'), // Polyfill process
+    vm: require.resolve("vm-browserify")
   };
 
   config.plugins = (config.plugins || []).concat([
