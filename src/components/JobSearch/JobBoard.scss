@@ -4,13 +4,6 @@
   display: flex;
   flex-wrap: wrap; // Allow items to wrap on smaller screens
   gap: 12px;
-
-  // Responsive styles for smaller screens
-  // @media (max-width: 768px) {
-  //   display: flex;
-  //   flex-direction: column;
-  //   width: 100%;
-  // }
 }
 
 .job-card {

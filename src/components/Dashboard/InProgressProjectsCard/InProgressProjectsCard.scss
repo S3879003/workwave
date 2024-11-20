@@ -4,9 +4,9 @@
 .active-projects-card {
   width: 300px;
   height: 200px;
-  border-radius: $border-radius; // Using global border radius variable
-  margin: $spacing-medium;       // Using global spacing variable
-  padding: $spacing-medium;      // Using global spacing variable
+  border-radius: $border-radius;
+  margin: $spacing-medium;   
+  padding: $spacing-medium;    
   background-color: $primary-color;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;

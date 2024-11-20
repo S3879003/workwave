@@ -1,17 +1,17 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import './InfoCards.scss';
 
 const InfoCards = () => {
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
 
   // Function to handle button click
   const handleButtonClick = (buttonText) => {
     if (buttonText === "Explore Jobs") {
-      navigate('/jobs'); // Navigate to the jobs page
+      navigate('/jobs');
     } else {
-      console.log(`${buttonText} button clicked`); // Handle other buttons as needed
+      console.log(`${buttonText} button clicked`); 
     }
   };
 
@@ -42,7 +42,7 @@ const InfoCards = () => {
             <p>{card.text}</p>
             <Button
               variant="outline-primary"
-              onClick={() => handleButtonClick(card.button)} // Add onClick handler
+              onClick={() => handleButtonClick(card.button)}
             >
               {card.button}
             </Button>

@@ -4,11 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import './JobDetailsModal.scss';
 
 const JobDetailsModal = ({ show, handleClose, job }) => {
-  const [bidAmount, setBidAmount] = useState(''); // Track bid amount
-  const [userBid, setUserBid] = useState(null); // Track user's existing bid
+  const [bidAmount, setBidAmount] = useState(''); 
+  const [userBid, setUserBid] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const userId = localStorage.getItem('userId'); // Freelancer's ID
+  const userId = localStorage.getItem('userId'); 
   const navigate = useNavigate();
 
   // Function to handle bid submission
@@ -48,7 +48,7 @@ const JobDetailsModal = ({ show, handleClose, job }) => {
         setTimeout(() => {
           setSuccessMessage('');
           handleClose();
-          navigate('/jobs'); // Reload jobs page
+          navigate('/jobs');
         }, 1500);
       } else {
         setErrorMessage(data.message || 'Failed to submit bid.');
@@ -69,10 +69,10 @@ const JobDetailsModal = ({ show, handleClose, job }) => {
 
         if (response.ok) {
           const data = await response.json();
-          setUserBid(data.bid); // Store the bid if it exists
-          setBidAmount(data.bid?.amount || ''); // Pre-fill the bid amount
+          setUserBid(data.bid);
+          setBidAmount(data.bid?.amount || ''); 
         } else {
-          setUserBid(null); // No bid exists
+          setUserBid(null); 
         }
       } catch (err) {
         console.error('Error fetching user bid:', err);

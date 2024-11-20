@@ -2,21 +2,21 @@
 
 // Job Posts List Container
 .job-posts-list {
-  margin-top: $spacing-large; // Using global spacing variable
+  margin-top: $spacing-large; 
 }
 
 // Job Cards Container
 .job-cards {
   display: flex;
-  flex-wrap: wrap; // Allow items to wrap on smaller screens
+  flex-wrap: wrap; 
   gap: 12px;
   background-color: $background-color; 
   padding: $spacing-medium;
   border-radius: $border-radius;
 
   @media (max-width: 770px) {
-    flex-direction: column; // Stack cards vertically
-    align-items: center; // Center cards horizontally
-    gap: $spacing-small; // Reduce gap for smaller screens
+    flex-direction: column; 
+    align-items: center; 
+    gap: $spacing-small;
   }
 }

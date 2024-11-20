@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, InputGroup, Alert } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
+import { useNavigate } from 'react-router-dom';
 import './CreateProjectForm.scss';
 
 
@@ -13,7 +13,7 @@ const CreateProjectForm = () => {
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
 
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   // Job types based on your secondary navigation bar
   const jobTypes = [
@@ -77,7 +77,7 @@ const CreateProjectForm = () => {
         // Redirect to client dashboard after successful creation
         setTimeout(() => {
           navigate('/client-dashboard');
-        }, 1000); // Optional delay for user feedback
+        }, 1000);
       } else {
         setError(data.message || 'Failed to create project');
       }

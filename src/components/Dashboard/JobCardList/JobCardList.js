@@ -25,7 +25,7 @@ const JobPostsList = () => {
       console.error('Error fetching active jobs:', err);
       setError('An error occurred while fetching active jobs');
     }
-  }, [userId]); // 'userId' is a dependency
+  }, [userId]); 
   
   useEffect(() => {
     if (userId) {

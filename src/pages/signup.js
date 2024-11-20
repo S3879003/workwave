@@ -53,7 +53,7 @@ const SignUpPage = ({ onSwap }) => {
         type: profilePicture.type,
       });
   
-      formData.append('profilePicture', updatedFile); // Append updated file
+      formData.append('profilePicture', updatedFile);
     }
   
     try {

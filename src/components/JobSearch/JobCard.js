@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Card, Badge, Button } from 'react-bootstrap';
-import JobDetailsModal from './JobDetailsModal/JobDetailsModal'; // Import the modal component
+import JobDetailsModal from './JobDetailsModal/JobDetailsModal';
 import './JobCard.scss';
 
 const JobCard = ({ job, userId }) => {
-  const [showModal, setShowModal] = useState(false); // State to control modal visibility
+  const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -24,7 +24,7 @@ const JobCard = ({ job, userId }) => {
           {/* Job Image */}
           <Card.Img
             variant="top"
-            src={job.image || 'https://via.placeholder.com/300'} // Ensure an image is always displayed
+            src={job.image || 'https://via.placeholder.com/300'}
             alt="Job"
             className="job-image"
           />
@@ -48,7 +48,7 @@ const JobCard = ({ job, userId }) => {
       <JobDetailsModal
         show={showModal}
         handleClose={handleCloseModal}
-        job={job} // Pass the job details to the modal
+        job={job} 
       />
     </>
   );

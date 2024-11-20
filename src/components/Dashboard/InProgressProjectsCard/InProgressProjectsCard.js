@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './InProgressProjectsCard.scss';
 
 const InProgressProjectsCard = () => {
-  const [ongoingJobsCount, setOngoingJobsCount] = useState(0); // State to store the number of ongoing jobs
+  const [ongoingJobsCount, setOngoingJobsCount] = useState(0); 
   const navigate = useNavigate();
 
-  const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
+  const userId = localStorage.getItem('userId');
 
   // Function to fetch the number of ongoing jobs
   const fetchActiveJobs = useCallback(async () => {
@@ -21,20 +21,20 @@ const InProgressProjectsCard = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setOngoingJobsCount(data.projects.length); // Set the count to the number of projects
+        setOngoingJobsCount(data.projects.length);
       } else {
         console.error('Failed to fetch ongoing jobs count');
-        setOngoingJobsCount(0); // Default to 0 in case of error
+        setOngoingJobsCount(0);
       }
     } catch (err) {
       console.error('Error fetching ongoing jobs count:', err);
-      setOngoingJobsCount(0); // Default to 0 in case of error
+      setOngoingJobsCount(0); 
     }
   }, [userId]);
 
   useEffect(() => {
     if (userId) {
-      fetchActiveJobs(); // Fetch data when the component mounts
+      fetchActiveJobs();
     }
   }, [fetchActiveJobs, userId]);
 

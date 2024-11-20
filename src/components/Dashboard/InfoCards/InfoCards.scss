@@ -4,8 +4,8 @@
 .info-cards-container {
   display: flex;
   justify-content: space-between;
-  gap: $spacing-medium; // Using global spacing variable
-  margin-top: $spacing-medium; // Using global spacing variable
+  gap: $spacing-medium;
+  margin-top: $spacing-medium;
 
     // Responsive styles for smaller screens
     @media (max-width: 768px) {
