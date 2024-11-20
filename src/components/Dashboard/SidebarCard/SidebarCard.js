@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { Card, Button, Modal, Form, Alert } from 'react-bootstrap';
 import './SidebarCard.scss';
@@ -16,7 +17,6 @@ const SidebarCard = () => {
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [user, setUser] = useState(null);
-
 
   // Fetch user data (profile picture, first name, and user type) from localStorage or API
   useEffect(() => {

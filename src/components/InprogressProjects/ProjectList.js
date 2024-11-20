@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import ProjectCard from './ProjectCard';
 import './ProjectList.scss';
 
@@ -11,7 +11,7 @@ const ActiveProjectList = () => {
   console.log(userId)
 
   // Fetch ongoing projects for the current user
-  const fetchOngoingProjects = async () => {
+  const fetchOngoingProjects = useCallback(async () => {
     try {
       const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/ongoing`, {
         method: 'GET',
@@ -29,13 +29,13 @@ const ActiveProjectList = () => {
       console.error('Error fetching ongoing projects:', err);
       setError('An error occurred while fetching ongoing projects');
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     if (userId) {
       fetchOngoingProjects();
     }
-  }, [userId]);
+  }, [fetchOngoingProjects, userId]);
 
   return (
     <div className="active-project-list">

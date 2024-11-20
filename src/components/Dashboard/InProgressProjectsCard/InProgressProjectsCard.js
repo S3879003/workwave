@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Card, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import './InProgressProjectsCard.scss';
@@ -10,7 +10,7 @@ const InProgressProjectsCard = () => {
   const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 
   // Function to fetch the number of ongoing jobs
-  const fetchOngoingJobsCount = async () => {
+  const fetchActiveJobs = useCallback(async () => {
     try {
       const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/ongoing`, {
         method: 'GET',
@@ -30,13 +30,13 @@ const InProgressProjectsCard = () => {
       console.error('Error fetching ongoing jobs count:', err);
       setOngoingJobsCount(0); // Default to 0 in case of error
     }
-  };
+  }, [userId]);
 
   useEffect(() => {
     if (userId) {
-      fetchOngoingJobsCount(); // Fetch data when the component mounts
+      fetchActiveJobs(); // Fetch data when the component mounts
     }
-  }, [userId]);
+  }, [fetchActiveJobs, userId]);
 
   const handleRedirect = () => {
     navigate('/ongoing-projects');
