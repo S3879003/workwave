@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Badge } from 'react-bootstrap';
+import { Card, Button } from 'react-bootstrap';
 import OffersModal from '../OffersModal/OffersModal';
 import './CurrentJobCard.scss';
 

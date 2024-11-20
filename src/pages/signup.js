@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Alert } from 'react-bootstrap';
 import './LoginPage.scss';
 
 const SignUpPage = ({ onSwap }) => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');

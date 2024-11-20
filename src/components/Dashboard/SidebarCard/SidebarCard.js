@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Card, Badge, Button, Modal, Form, Alert } from 'react-bootstrap';
+import { Card, Button, Modal, Form, Alert } from 'react-bootstrap';
 import './SidebarCard.scss';
 
 const SidebarCard = () => {

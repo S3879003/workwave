@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import CustomNavbar from '../components/navigation/navbar';
 import JobBoard from '../components/JobSearch/JobBoard'
 
