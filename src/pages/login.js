@@ -4,6 +4,7 @@ import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
 import './LoginPage.scss';
 
 const LoginPage = ({ onSwap }) => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');

@@ -12,6 +12,8 @@ import InprogressProjects from './pages/InProgressProjectsPage';
 import ClientDashboard from './pages/ClientDashboard';
 import CreateProjectForm from './pages/CreateProjectPage';
 
+require('dotenv').config();
+
 function App() {
   return (
     <Router>

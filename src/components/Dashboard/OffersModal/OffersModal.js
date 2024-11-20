@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button, ListGroup, Alert } from 'react-bootstrap';
 
 const OffersModal = ({ show, handleClose, jobId, userId }) => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');

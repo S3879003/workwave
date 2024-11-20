@@ -3,7 +3,9 @@ import { Form, Button, InputGroup, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import './CreateProjectForm.scss';
 
+
 const CreateProjectForm = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [jobType, setJobType] = useState('');

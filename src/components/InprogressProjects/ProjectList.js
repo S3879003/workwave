@@ -3,6 +3,7 @@ import ProjectCard from './ProjectCard';
 import './ProjectList.scss';
 
 const ActiveProjectList = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState('');
 

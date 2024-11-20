@@ -3,6 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import './ProjectCard.scss';
 
 const ProjectCard = ({ jobid, userId, title, description, image, onComplete, onCancel }) => {
+  const BACKEND_API = process.env.BACKEND_API;
   const handleCompleteJob = async () => {
     try {
       const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobid}/complete`, {

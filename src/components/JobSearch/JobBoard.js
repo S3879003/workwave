@@ -5,6 +5,7 @@ import JobDetailsModal from './JobDetailsModal/JobDetailsModal';
 import './JobBoard.scss';
 
 const JobBoard = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [showModal, setShowModal] = useState(false);

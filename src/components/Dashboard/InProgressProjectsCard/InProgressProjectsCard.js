@@ -6,6 +6,7 @@ import './InProgressProjectsCard.scss';
 const InProgressProjectsCard = () => {
   const [ongoingJobsCount, setOngoingJobsCount] = useState(0); // State to store the number of ongoing jobs
   const navigate = useNavigate();
+  const BACKEND_API = process.env.BACKEND_API;
 
   const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 

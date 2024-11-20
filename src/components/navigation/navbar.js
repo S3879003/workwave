@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';
 
 const CustomNavbar = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 

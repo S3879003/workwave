@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './JobDetailsModal.scss';
 
 const JobDetailsModal = ({ show, handleClose, job }) => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [bidAmount, setBidAmount] = useState(''); // Track bid amount
   const [userBid, setUserBid] = useState(null); // Track user's existing bid
   const [successMessage, setSuccessMessage] = useState('');

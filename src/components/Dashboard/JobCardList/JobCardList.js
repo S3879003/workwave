@@ -3,6 +3,7 @@ import JobCard from '../CurrentJobCard/CurrentJobCard';
 import './JobCardList.scss';
 
 const JobPostsList = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const [jobPosts, setJobPosts] = useState([]);
   const [error, setError] = useState('');
   const userId = localStorage.getItem('userId');

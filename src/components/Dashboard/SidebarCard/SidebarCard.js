@@ -3,6 +3,7 @@ import { Card, Badge, Button, Modal, Form, Alert } from 'react-bootstrap';
 import './SidebarCard.scss';
 
 const SidebarCard = () => {
+  const BACKEND_API = process.env.BACKEND_API;
   const userId = localStorage.getItem('userId');
   const [firstName, setFirstName] = useState(localStorage.getItem('firstName') || '');
   const [lastName, setLastName] = useState(localStorage.getItem('lastName') || '');
