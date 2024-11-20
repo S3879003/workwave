@@ -11,7 +11,7 @@ $text-color: #333333;
 $link-color: #6C63FF;
 $white-color: #ffffff;
 $text-color-light: #666;
-$link-hover-color: darken($link-color, 10%);
+$link-hover-color: scale-color($link-color, $lightness: -10%);
 $border-color: #e0e0e0;
 
 // Spacing

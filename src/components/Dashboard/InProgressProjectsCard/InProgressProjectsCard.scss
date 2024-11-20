@@ -1,4 +1,4 @@
-@import '/src/styles/globals';
+@use '/src/styles/globals' as *;
 
 // Active Projects Card Styles
 .active-projects-card {

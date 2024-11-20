@@ -1,4 +1,4 @@
-@import '../styles/globals';
+@use '/src/styles/globals' as *;
 
 .min-vh-100 {
   height: 100vh;

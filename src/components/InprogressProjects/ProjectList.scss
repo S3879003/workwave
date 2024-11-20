@@ -1,4 +1,4 @@
-@import '/src/styles/globals';
+@use '/src/styles/globals' as *;
 
 // Active Project List Container
 .active-project-list {

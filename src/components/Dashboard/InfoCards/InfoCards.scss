@@ -1,4 +1,4 @@
-@import '/src/styles/globals';
+@use '/src/styles/globals' as *;
 
 // Info Cards Container
 .info-cards-container {
