@@ -141,7 +141,7 @@ const LoginPage = ({ onSwap }) => {
               <Card.Text className="text-white mb-4" style={{ fontSize: '1.25rem' }}>
                 Achieve your goals! Login now and accomplish greatness!
               </Card.Text>
-              <img src="../imgs/female.png" alt="Motivational" className="img-fluid" />
+              <img src="../imgs/female.png" alt="Motivational" className="img-fluid login-img" />
             </Card.Body>
           </Card>
         </Col>
