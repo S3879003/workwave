@@ -11,7 +11,6 @@ const SidebarCard = () => {
   const [bio] = useState(localStorage.getItem('bio') || '');
   const [profilePicture, setProfilePicture] = useState(localStorage.getItem('profilePicture') || null);
   const [password, setPassword] = useState('');
-  const [newEmail, setNewEmail] = useState(email);
   const [newProfilePicture, setNewProfilePicture] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState('');
@@ -74,31 +73,6 @@ const SidebarCard = () => {
       }
     } catch (err) {
       setError('Error updating password');
-    }
-  };
-
-  // Update Email Function
-  const handleUpdateEmail = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    try {
-      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/email`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: newEmail }),
-      });
-
-      if (response.ok) {
-        setSuccess('Email updated successfully!');
-        localStorage.setItem('email', newEmail);
-        setEmail(newEmail);
-      } else {
-        setError('Failed to update email');
-      }
-    } catch (err) {
-      setError('Error updating email');
     }
   };
 
@@ -203,15 +177,6 @@ const SidebarCard = () => {
               <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
             <Button variant="primary" type="submit" className="w-100 mb-3">Change Password</Button>
-          </Form>
-
-          {/* Update Email */}
-          <Form onSubmit={handleUpdateEmail}>
-            <Form.Group controlId="formEmail" className="mb-3">
-              <Form.Label>Update Email</Form.Label>
-              <Form.Control type="email" value={newEmail} onChange={(e) => setNewEmail(e.target.value)} />
-            </Form.Group>
-            <Button variant="success" type="submit" className="w-100 mb-3">Update Email</Button>
           </Form>
 
           {/* Update Profile Picture */}
