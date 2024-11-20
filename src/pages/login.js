@@ -4,7 +4,6 @@ import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap'
 import './LoginPage.scss';
 
 const LoginPage = ({ onSwap }) => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -34,7 +33,7 @@ const LoginPage = ({ onSwap }) => {
     console.log('Logging in with:', { email, password });
 
     try {
-      const response = await fetch(`${BACKEND_API}/auth/signin`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/auth/signin`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

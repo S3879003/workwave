@@ -5,7 +5,6 @@ import JobDetailsModal from './JobDetailsModal/JobDetailsModal';
 import './JobBoard.scss';
 
 const JobBoard = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [jobs, setJobs] = useState([]);
   const [selectedJob, setSelectedJob] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +25,7 @@ const JobBoard = () => {
   // Fetch all active jobs from the backend
   const fetchActiveJobs = async () => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/listings/active`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/listings/active`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

@@ -46,7 +46,7 @@ const SignUpPage = ({ onSwap }) => {
 
     try {
       // Make a POST request to the signup endpoint
-      const response = await fetch(`${BACKEND_API}/auth/signup`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/auth/signup`, {
         method: 'POST',
         body: formData,
       });

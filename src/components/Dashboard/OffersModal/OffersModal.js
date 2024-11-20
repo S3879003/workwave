@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Button, ListGroup, Alert } from 'react-bootstrap';
 
 const OffersModal = ({ show, handleClose, jobId, userId }) => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [bids, setBids] = useState([]);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -12,7 +11,7 @@ const OffersModal = ({ show, handleClose, jobId, userId }) => {
     const fetchBids = async () => {
       if (show) {
         try {
-          const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobId}/bids`, {
+          const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/${jobId}/bids`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
           });
@@ -36,7 +35,7 @@ const OffersModal = ({ show, handleClose, jobId, userId }) => {
 
   const handleAcceptBid = async (freelancerId) => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobId}/accept/${freelancerId}`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/${jobId}/accept/${freelancerId}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' }
       });

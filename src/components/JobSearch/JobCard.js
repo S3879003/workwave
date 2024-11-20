@@ -4,7 +4,6 @@ import JobDetailsModal from './JobDetailsModal/JobDetailsModal'; // Import the m
 import './JobCard.scss';
 
 const JobCard = ({ job, userId }) => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
   const handleShowModal = () => setShowModal(true);

@@ -3,10 +3,9 @@ import { Card, Button } from 'react-bootstrap';
 import './ProjectCard.scss';
 
 const ProjectCard = ({ jobid, userId, title, description, image, onComplete, onCancel }) => {
-  const BACKEND_API = process.env.BACKEND_API;
   const handleCompleteJob = async () => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobid}/complete`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/${jobid}/complete`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -23,7 +22,7 @@ const ProjectCard = ({ jobid, userId, title, description, image, onComplete, onC
   const handleCancelJob = async () => {
     if (window.confirm('Are you sure you want to cancel this job?')) {
       try {
-        const response = await fetch(`${BACKEND_API}/job/${userId}/listings/${jobid}/delete`, {
+        const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/${jobid}/delete`, {
           method: 'DELETE',
           headers: { 'Content-Type': 'application/json' },
         });

@@ -6,14 +6,13 @@ import './InProgressProjectsCard.scss';
 const InProgressProjectsCard = () => {
   const [ongoingJobsCount, setOngoingJobsCount] = useState(0); // State to store the number of ongoing jobs
   const navigate = useNavigate();
-  const BACKEND_API = process.env.BACKEND_API;
 
   const userId = localStorage.getItem('userId'); // Retrieve userId from localStorage
 
   // Function to fetch the number of ongoing jobs
   const fetchOngoingJobsCount = async () => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/ongoing`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/ongoing`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

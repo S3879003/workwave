@@ -3,7 +3,6 @@ import { Card, Badge, Button, Modal, Form, Alert } from 'react-bootstrap';
 import './SidebarCard.scss';
 
 const SidebarCard = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const userId = localStorage.getItem('userId');
   const [firstName, setFirstName] = useState(localStorage.getItem('firstName') || '');
   const [lastName, setLastName] = useState(localStorage.getItem('lastName') || '');
@@ -26,7 +25,7 @@ const SidebarCard = () => {
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`${BACKEND_API}/user/${userId}`, {
+        const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -59,7 +58,7 @@ const SidebarCard = () => {
     setSuccess('');
 
     try {
-      const response = await fetch(`${BACKEND_API}/user/${userId}/bio`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/bio`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bio }),
@@ -85,7 +84,7 @@ const SidebarCard = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_API}/user/${userId}/password`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/password`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
@@ -109,7 +108,7 @@ const SidebarCard = () => {
     setSuccess('');
 
     try {
-      const response = await fetch(`${BACKEND_API}/user/${userId}/email`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/email`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email: newEmail }),
@@ -141,7 +140,7 @@ const SidebarCard = () => {
     formData.append('profilePicture', newProfilePicture);
 
     try {
-      const response = await fetch(`${BACKEND_API}/user/${userId}/profile-picture`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/profile-picture`, {
         method: 'PUT',
         body: formData,
       });
@@ -163,7 +162,7 @@ const SidebarCard = () => {
   const handleDeleteAccount = async () => {
     if (window.confirm('Are you sure you want to delete your account? This action is irreversible.')) {
       try {
-        const response = await fetch(`${BACKEND_API}/user/${userId}`, {
+        const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}`, {
           method: 'DELETE',
         });
 
@@ -185,7 +184,7 @@ const SidebarCard = () => {
   // Render profile initials or picture
   const renderProfilePicture = () => {
     if (user?.profilePicture) {
-      let displayProfilePicture = `${BACKEND_API}${user.profilePicture}`
+      let displayProfilePicture = `https://workwave-bcdf01747233.herokuapp.com${user.profilePicture}`
       return <img src={displayProfilePicture} alt="Profile" className="profile-img" />;
     }
     return <div className="profile-initials">{firstName.charAt(0)}</div>;

@@ -5,7 +5,6 @@ import './CreateProjectForm.scss';
 
 
 const CreateProjectForm = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [jobType, setJobType] = useState('');
@@ -57,7 +56,7 @@ const CreateProjectForm = () => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/create`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/create`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

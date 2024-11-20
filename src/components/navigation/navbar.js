@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import './Navbar.scss';
 
 const CustomNavbar = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -15,7 +14,7 @@ const CustomNavbar = () => {
         const userId = localStorage.getItem('userId');
         const token = localStorage.getItem('token');
 
-        const response = await fetch(`${BACKEND_API}/user/${userId}`, {
+        const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -43,7 +42,7 @@ const CustomNavbar = () => {
   // Function to render profile button content
   const renderProfileButton = () => {
     if (user?.profilePicture) {
-      const profilePictureUrl = `${BACKEND_API}${user.profilePicture}`;
+      const profilePictureUrl = `https://workwave-bcdf01747233.herokuapp.com${user.profilePicture}`;
       return <img src={profilePictureUrl} alt="Profile" className="profile-picture" />;
     } else if (user?.firstName) {
       return <span>{user.firstName.charAt(0).toUpperCase()}</span>;

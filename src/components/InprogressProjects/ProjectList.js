@@ -3,7 +3,6 @@ import ProjectCard from './ProjectCard';
 import './ProjectList.scss';
 
 const ActiveProjectList = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [projects, setProjects] = useState([]);
   const [error, setError] = useState('');
 
@@ -14,7 +13,7 @@ const ActiveProjectList = () => {
   // Fetch ongoing projects for the current user
   const fetchOngoingProjects = async () => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/ongoing`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/ongoing`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });

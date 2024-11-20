@@ -3,14 +3,13 @@ import JobCard from '../CurrentJobCard/CurrentJobCard';
 import './JobCardList.scss';
 
 const JobPostsList = () => {
-  const BACKEND_API = process.env.BACKEND_API;
   const [jobPosts, setJobPosts] = useState([]);
   const [error, setError] = useState('');
   const userId = localStorage.getItem('userId');
 
   const fetchActiveJobs = async () => {
     try {
-      const response = await fetch(`${BACKEND_API}/job/${userId}/listings/active`, {
+      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/job/${userId}/listings/active`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
