@@ -4,10 +4,10 @@ import './SidebarCard.scss';
 
 const SidebarCard = () => {
   const userId = localStorage.getItem('userId');
-  const [firstName, setFirstName] = useState(localStorage.getItem('firstName') || '');
-  const [lastName, setLastName] = useState(localStorage.getItem('lastName') || '');
+  const [firstName] = useState(localStorage.getItem('firstName') || '');
+  const [lastName] = useState(localStorage.getItem('lastName') || '');
   const [email, setEmail] = useState(localStorage.getItem('email') || '');
-  const [bio, setBio] = useState(localStorage.getItem('bio') || '');
+  const [bio] = useState(localStorage.getItem('bio') || '');
   const [profilePicture, setProfilePicture] = useState(localStorage.getItem('profilePicture') || null);
   const [password, setPassword] = useState('');
   const [newEmail, setNewEmail] = useState(email);
@@ -49,30 +49,6 @@ const SidebarCard = () => {
     setShowModal(false);
     setError('');
     setSuccess('');
-  };
-
-  // Update Bio Function
-  const handleUpdateBio = async (e) => {
-    e.preventDefault();
-    setError('');
-    setSuccess('');
-
-    try {
-      const response = await fetch(`https://workwave-bcdf01747233.herokuapp.com/user/${userId}/bio`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ bio }),
-      });
-
-      if (response.ok) {
-        setSuccess('Bio updated successfully!');
-        localStorage.setItem('bio', bio);
-      } else {
-        setError('Failed to update bio');
-      }
-    } catch (err) {
-      setError('Error updating bio');
-    }
   };
 
   // Update Password Function
